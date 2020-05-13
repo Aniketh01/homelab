@@ -19,15 +19,12 @@ def ecdf(x, y_label='ECDF', x_label=None, ax=None, percentile=None,
     if x_label is not None:
         ax.set_xlabel(x_label)
     if percentile:
-        targets = x[y <= percentile]
-        percentile_threshold = targets.max()
-        percentile_count = targets.shape[0]
+        percentile_threshold = np.percentile(x, 70)
         ax.axvline(percentile_threshold,
                    color=percentile_color,
                    linestyle=percentile_linestyle)
 
     else:
         percentile_threshold = None
-        percentile_count = None
 
-    return ax, percentile_threshold, percentile_count
+    return ax, percentile_threshold
